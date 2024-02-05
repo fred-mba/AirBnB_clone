@@ -3,7 +3,7 @@
 - This project entails writing a command interpreter to manage AirBnB onbjects
 - It comprises of two major parts of web development -- front-end and back-end development
   * Front-end : HTML/CSS templating, database storage, API, front-end integration
-  * Back-end : Includes application of Object Oriented Programming (OOP) concepts learned
+  * Back-end : application of Object Oriented Programming (OOP) concepts
 
 Each task is linked to:
 
