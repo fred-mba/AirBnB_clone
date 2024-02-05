@@ -13,4 +13,4 @@ Each task is linked to:
 - create the first abstracted storage engine of the project: File storage.
 - create all unittests to validate all our classes and storage engine
 
-* The ultimate goal of this project is to deploy on your server a simple copy of the [AirBnB website](https://www.airbnb.com/).
+* The ultimate goal of this project is to deploy a simple copy of the [AirBnB website](https://www.airbnb.com/).
