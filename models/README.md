@@ -1,0 +1,2 @@
+- This model consist of all package models defined and used in other classes
+- The empty `__init__.py` file indicates that this directory should be treated as a package, allowing it to be imported and initialized using `import` statement
