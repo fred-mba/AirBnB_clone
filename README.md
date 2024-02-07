@@ -1,5 +1,4 @@
 ## AirBnB clone - The console
-![Optional Text](hbnb.png)
 
 - This project entails writing a command interpreter to manage AirBnB onbjects
 - It comprises of two major parts of web development -- front-end and back-end development
