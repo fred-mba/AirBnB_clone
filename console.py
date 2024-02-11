@@ -22,7 +22,7 @@ class HBNBCommand(cmd.Cmd):
     class_list = [
         "BaseModel", "Amenity", "City",
         "Place", "Review", "State", "User"]
-    
+
     def do_create(self, args):
         """Creates a new instance of BaseModel, saves it and prints the id"""
         if not args:
