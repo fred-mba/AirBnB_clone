@@ -8,20 +8,29 @@ import models
 class BaseModel:
     """Base class for all classes"""
     def __init__(self, *args, **kwargs):
-        """Initializes new istance of BaseModel"""
-        self.id = str(uuid.uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+        """Initializes new instances of a base model"""
+        if kwargs:
+            if '__class__' in kwargs:
+                del kwargs['__class__']
+            if 'created_at' in kwargs:
+                kwargs['created_at'] = datetime.strptime(
+                    kwargs['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
+            if 'updated_at' in kwargs:
+                kwargs['updated_at'] = datetime.strptime(
+                    kwargs['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
 
-        if len(kwargs) != 0:
-            in_format = "%Y-%m-%dT%H:%M:%S.%f"
             for key, value in kwargs.items():
-                if key == "created_at" or key == "updated_at":
-                    self.__dict__[key] = datetime.strptime(value, in_format)
-                else:
-                    self.__dict__[key] = value
+                setattr(self, key, value)
         else:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
             models.storage.new(self)
+
+    def __str__(self):
+        """prints: [<class name>] (<self.id>) <self.__dict__>"""
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """ updates the public instance attribute updated_at"""
@@ -37,8 +46,3 @@ class BaseModel:
         obj_dict['updated_at'] = self.updated_at.isoformat()
 
         return obj_dict
-
-    def __str__(self):
-        """prints: [<class name>] (<self.id>) <self.__dict__>"""
-        return "[{}] ({}) {}".format(
-            self.__class__.__name__, self.id, self.__dict__)
