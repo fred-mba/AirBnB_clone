@@ -22,7 +22,7 @@ class HBNBCommand(cmd.Cmd):
     class_list = [
         "BaseModel", "Amenity", "City",
         "Place", "Review", "State", "User"]
-
+    
     def do_create(self, args):
         """Creates a new instance of BaseModel, saves it and prints the id"""
         if not args:
@@ -159,14 +159,6 @@ class HBNBCommand(cmd.Cmd):
 
             else:
                 print("** class doesn't exist **")
-
-    def default(self, line_input):
-        """Performing do_commands using <class name>.<command>"""
-        command_parts = line_input.split('.')[0]
-
-        if len(command_parts) == 2 and command_parts[1] == '.all()':
-            class_name = command_parts[0]
-            self.do_all(class_name)
 
     def do_quit(self, args):
         """Quit command to exit the program"""
