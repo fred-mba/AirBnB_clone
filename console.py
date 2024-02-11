@@ -95,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 result = []
                 for key, val in all_objects.items():
-                    if key.__class__.__name__ == args_input[0]:
+                    if key.startswith(class_name):
                         result.append(str(val))
 
                 print(result)
@@ -180,6 +180,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def default(self, args):
+        """Handles operations of <class name>.<command>"""
         if args.endswith('.count()'):
             class_name = args.split(".")[0]
             self.do_count(class_name)
