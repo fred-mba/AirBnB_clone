@@ -17,7 +17,6 @@ from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     """The command class"""
-    intro = "Welcome to AirBnB - The console. Type help for more commands"
     prompt = "(hbnb) "
 
     class_list = [
