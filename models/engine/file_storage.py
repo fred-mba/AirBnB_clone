@@ -31,7 +31,7 @@ class FileStorage:
         for key, obj in self.all().items():
             serialized_obj[key] = obj.to_dict()
 
-        with open(self.__file_path, 'w') as file:
+        with open(self.__file_path, 'w', encoding="UTF-8") as file:
             json.dump(serialized_obj, file)
 
     def reload(self):
