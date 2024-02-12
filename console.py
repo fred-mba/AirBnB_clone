@@ -11,7 +11,6 @@ from models.engine.file_storage import FileStorage
 from models.place import Place
 from models.review import Review
 from models.state import State
-from models import storage
 from models.user import User
 
 
@@ -26,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
         "Place": Place,
         "Review": Review,
         "State": State,
-        "User": User
+        "User": User,
         }
 
     def do_create(self, args):
@@ -38,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
         class_name = args_input[0]
         if class_name not in self.class_list:
             print("** class doesn't exist **")
-            return
+
         else:
             class_name = args_input[0]
             if class_name in self.class_list:
@@ -55,17 +54,14 @@ class HBNBCommand(cmd.Cmd):
         the class name and id. Ex: $ show BaseModel 1234-1234-1234"""
         if not args:
             print("** class name missing **")
-            return
 
         args_input = args.split()
         class_name = args_input[0]
         if class_name not in self.class_list:
             print("** class doesn't exist **")
-            return
 
         elif len(args_input) < 2:
             print("** instance id missing **")
-            return
 
         else:
             obj_id = args_input[1]
@@ -113,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(line_args) == 1:
             print("** instance id missing **")
         else:
-            obj_id = line_args[1].strip('"')
+            obj_id = line_args[1]
             key = "{}.{}".format(class_name, obj_id)
             all_objects = models.storage.all()
 
