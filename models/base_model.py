@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Define common attributes/methods for other classes"""
+"""
+Define common attributes/methods for other classes
+"""
 from datetime import datetime
 import uuid
 import models
