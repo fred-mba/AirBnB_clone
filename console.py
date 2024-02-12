@@ -1,8 +1,17 @@
 #!/usr/bin/python3
-"""Entry point of the command interpreter"""
+"""
+Entry point of the command interpreter
+Commands implemented:
+- Create()
+- Show()
+- Update()
+- Destroy()
+- all()
+- count()
+"""
+
 import cmd
 import json
-import models
 import re
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -12,6 +21,7 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -19,8 +29,8 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     class_list = {
-        "BaseModel": BaseModel,
         "Amenity": Amenity,
+        "BaseModel": BaseModel,
         "City": City,
         "Place": Place,
         "Review": Review,
@@ -42,8 +52,8 @@ class HBNBCommand(cmd.Cmd):
             class_name = args_input[0]
             if class_name in self.class_list:
                 class_obj = self.class_list[class_name]()
-                models.storage.new(class_obj)
-                models.storage.save()
+                storage.new(class_obj)
+                storage.save()
                 print(class_obj.id)
 
             else:
@@ -66,7 +76,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             obj_id = args_input[1]
             key = "{}.{}".format(class_name, obj_id)
-            all_objects = models.storage.all()
+            all_objects = storage.all()
 
             if key in all_objects:
                 print(all_objects[key])
@@ -77,7 +87,7 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances based or not
         on the class name. Ex: $ all BaseModel or $ all"""
         args_input = args.split()
-        all_objects = models.storage.all()
+        all_objects = storage.all()
 
         if not args_input:
             print([str(obj) for obj in all_objects.values()])
@@ -111,7 +121,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             obj_id = line_args[1]
             key = "{}.{}".format(class_name, obj_id)
-            all_objects = models.storage.all()
+            all_objects = storage.all()
 
             if key not in all_objects:
                 print("** no instance found **")
@@ -128,7 +138,7 @@ class HBNBCommand(cmd.Cmd):
 
                     instance = all_objects[key]
                     setattr(instance, attr_name, attr_val)
-                    models.storage.save()
+                    storage.save()
 
     def do_destroy(self, args):
         """Deletes an instance based on the class name and id"""
@@ -145,13 +155,13 @@ class HBNBCommand(cmd.Cmd):
         else:
             obj_id = line_args[1].strip('"')
             key = "{}.{}".format(class_name, obj_id)
-            all_objects = models.storage.all()
+            all_objects = storage.all()
 
             if key not in all_objects:
                 print("** no instance found **")
             else:
                 del all_objects[key]
-                models.storage.save()
+                storage.save()
 
     def do_count(self, args):
         """Retrieve the number of instances of a class: <class name>.count()"""
@@ -164,7 +174,7 @@ class HBNBCommand(cmd.Cmd):
             class_name = line_args[0]
 
             if class_name in self.class_list:
-                all_objects = models.storage.all()
+                all_objects = storage.all()
 
                 count = 0
                 for key in all_objects.keys():
@@ -180,6 +190,10 @@ class HBNBCommand(cmd.Cmd):
         if args.endswith('.count()'):
             class_name = args.split(".")[0]
             self.do_count(class_name)
+
+    def emptyline(self):
+        """Returns True for an empty line"""
+        pass
 
     def do_quit(self, args):
         """Quit command to exit the program"""
