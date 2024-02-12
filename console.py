@@ -25,7 +25,9 @@ from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
-    """The command class"""
+    """The command class
+    Defines the commands to be used in the user interactive mode
+    """
     prompt = "(hbnb) "
 
     class_list = {
