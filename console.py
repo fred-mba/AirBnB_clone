@@ -25,8 +25,9 @@ from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
-    """The command class
-    Defines the commands to be used in the user interactive mode
+    """
+    The command class defines the commands to
+    be used in the user interactive mode
     """
     prompt = "(hbnb) "
 
@@ -62,8 +63,10 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
 
     def do_show(self, args):
-        """Prints the string representation of an instance based on
-        the class name and id. Ex: $ show BaseModel 1234-1234-1234"""
+        """
+        Prints the string representation of an instance based on
+        the class name and id. Ex: $ show BaseModel 1234-1234-1234
+        """
         if not args:
             print("** class name missing **")
 
@@ -86,8 +89,10 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, args):
-        """Prints all string representation of all instances based or not
-        on the class name. Ex: $ all BaseModel or $ all"""
+        """
+        Prints all string representation of all instances based or not
+        on the class name. Ex: $ all BaseModel or $ all
+        """
         args_input = args.split()
         all_objects = storage.all()
 
@@ -109,8 +114,10 @@ class HBNBCommand(cmd.Cmd):
                 print(result)
 
     def do_update(self, args):
-        """Updates an instance based on the class name and id
-        by adding or updating attribute"""
+        """
+        Updates an instance based on the class name and id
+        by adding or updating attribute
+        """
         if not args:
             print("** class name missing **")
 
