@@ -1,15 +1,9 @@
 #!/usr/bin/python3
 """
 Entry point of the command interpreter
-Commands implemented:
-- Create()
-- Show()
-- Update()
-- Destroy()
-- all()
-- count()
 """
 
+import re
 import cmd
 from models.amenity import Amenity
 from models.base_model import BaseModel
@@ -193,9 +187,31 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, args):
         """Handles operations of <class name>.<command>"""
-        if args.endswith('.count()'):
+        if args.endswith('.all()'):
+            class_name = args.split(".")[0]
+            self.do_all(class_name)
+
+        if re.search(r'\.count\(\)$', args):
             class_name = args.split(".")[0]
             self.do_count(class_name)
+
+        elif ".show(" in args:
+            obj_id = args[args.index("(")+1: args.index(")")]
+            obj_id = obj_id.strip('""')
+            class_name = args.split(".")[0]
+            self.do_show(f"{class_name} {obj_id}")
+
+        elif ".destroy(" in args:
+            obj_id = args[args.index("(")+1: args.index(")")]
+            obj_id = obj_id.strip('""')
+            class_name = args.split(".")[0]
+            self.do_destroy(f"{class_name} {obj_id}")
+
+        elif ".update(" in args:
+            search = r'(\w+)\.update\("([^"]+)", "([^"])", "([^"]+)"\)'
+            match = re.match(search, args)
+            class_name, obj_id, attr_name, attr_id = match.groups()
+            self.do_update(f"{class_name} {obj_id} {attr_name} {attr_id}")
 
     def emptyline(self):
         """Returns True for an empty line"""
