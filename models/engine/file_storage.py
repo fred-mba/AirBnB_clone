@@ -2,6 +2,7 @@
 """Serialization and deserialization of python objects"""
 import json
 
+
 class FileStorage:
     """Storage class"""
     __file_path = "file.json"
@@ -38,7 +39,7 @@ class FileStorage:
         from models.review import Review
         from models.state import State
         from models.user import User
-        
+
         class_list = {
             'Amenity': Amenity,
             'BaseModel': BaseModel,
