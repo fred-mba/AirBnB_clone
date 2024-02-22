@@ -13,11 +13,12 @@ button {
     border-radius: 4px;
     font-size: 18px;
     color: #FFF;
-    margin: 12px 30px; /*30px to the right*/
+    margin: 12px 30px; /*30px to the left-right*/
     float: right;
 }
 
 button:hover {
+    background: rgb(255, 90, 95);
     background-color: rgba(255, 90, 95, .9); /*change opacity to 90% when hovered*/
 }
 
