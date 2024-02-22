@@ -1,0 +1,20 @@
+.popover {
+    background-color: #FAFAFA;
+    width: 100%;/*The same as division filter*/
+    border: 1px solid #DDD;
+    border-top: none;
+    border-radius: 4px;
+    list-style-type: none; /*no list display*/
+    font-size: 16px;
+    position: fixed;
+    margin-left: -1px;
+    padding-top: 10px;
+    padding-left: 20px;
+    visibility: hidden; /*not displayed by default*/
+}
+.locations:hover .popover {
+    visibility: visible;
+}
+.amenities:hover .popover {
+    visibility: visible;
+}
