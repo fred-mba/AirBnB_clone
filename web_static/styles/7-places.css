@@ -1,0 +1,24 @@
+.places article {
+    width: 390px;
+    display: inline-block;
+    padding: 20px;
+    margin: 20px;
+    border: #FF5A5F solid 1px;
+    border-radius: 4px;
+    /*colour, border-style, border-size, border-radius*/
+}
+
+.places h1 {
+    font-size: 30px;
+    width: 100%;
+    margin: 10px 0px auto;
+}
+
+.places h2 {
+    font-size: 30px;
+    text-align: center;
+}
+.places .Asuite {
+    margin-left: 250px;
+    /*display: inline;*/
+}
