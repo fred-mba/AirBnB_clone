@@ -249,6 +249,15 @@ class HBNBCommand(cmd.Cmd):
                         f"{class_name} {obj_id} {attr_name} {attr_value}"
                     )
 
+                dict_match = re.search(r'update\(["\']([^,"\']+)["\']\s*,'
+                                       r'\s*(\{.*\})\)', method_call)
+                if dict_match:
+                    obj_id = dict_match.group(1).strip()
+                    attr_dict = eval(dict_match.group(2))
+                    for attr_name, attr_value in attr_dict.items():
+                        self.do_update(
+                            f"{class_name} {obj_id} {attr_name} {attr_value}")
+
     def do_quit(self, args):
         """Quit command to exit the program"""
         return True
