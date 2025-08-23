@@ -32,7 +32,9 @@ class HBNBCommand(cmd.Cmd):
         }
 
     def do_create(self, args):
-        """Creates a new instance of BaseModel, saves it and prints the id"""
+        """Creates a new instance of BaseModel, saves it and prints the id
+           Ex: $ create BaseModel
+        """
         args_input = args.strip().split()
         if len(args_input) == 0:
             print("** class name missing **")
@@ -107,6 +109,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Updates an instance based on the class name and id
         by adding or updating attribute
+        Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com"
         """
         args_input = args.strip().split()
         if len(args_input) == 0:
@@ -155,7 +158,9 @@ class HBNBCommand(cmd.Cmd):
         obj.save()
 
     def do_destroy(self, args):
-        """Deletes an instance based on the class name and id"""
+        """Deletes an instance based on the class name and id
+           Ex: $ destroy BaseModel 1234-1234-1234
+        """
         if not args:
             print("** class name missing **")
             return
