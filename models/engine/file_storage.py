@@ -11,7 +11,7 @@ from models.user import User
 
 
 class FileStorage:
-    """Storage class"""
+    """Serialize and decerialize class objects"""
     __file_path = "file.json"
     __objects = {}  # will store all objects by <class name>.id
 
